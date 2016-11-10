@@ -17,3 +17,5 @@ function isAllTrue(source, filterFn) {
     console.error(e.message);
   }
 }
+
+module.exports = isAllTrue;

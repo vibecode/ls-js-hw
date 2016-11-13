@@ -1,3 +1,8 @@
+//для начала делаю простенький push, поскольку он понадобится несколько раз
+function push(arr, element) {
+    arr[arr.length] = element;
+}
+
 // forEach
 function forEach(arr, callback) {
     for (var i = 0; i < arr.length; i++) {
@@ -10,7 +15,7 @@ function filter(arr, callback) {
     var newArr = [];
     for (var i = 0; i < arr.length; i++) {
         if (callback(arr[i], i, arr) === true) {
-            newArr.push(arr[i]);
+            push(newArr, arr[i]);
         }
     }
     return newArr;
@@ -20,24 +25,24 @@ function filter(arr, callback) {
 function map(arr, callback) {
     var newArr = [];
     for (var i = 0; i < arr.length; i++) {
-        newArr.push(callback(arr[i], i, arr));
+        push(newArr, callback(arr[i], i, arr));
     }
     return newArr;
 }
 
 /* slice
-Копирует участок массива от begin до end, не включая end.
-Исходный массив при этом не меняется.
-Если не указать end – копирование будет до конца массива.
-Если вообще не указать аргументов – скопируется весь массив.
-Можно использовать отрицательные индексы, они отсчитываются с конца.*/
+ Копирует участок массива от begin до end, не включая end.
+ Исходный массив при этом не меняется.
+ Если не указать end – копирование будет до конца массива.
+ Если вообще не указать аргументов – скопируется весь массив.
+ Можно использовать отрицательные индексы, они отсчитываются с конца.*/
 
 function slice(arr, begin = 0, end = arr.length) {
     var newArr = [];
 
     begin = isNaN(parseFloat(begin)) ? 0 : begin;
 
-    if (begin < 0 ) {
+    if (begin < 0) {
         begin += arr.length;
         if (begin < 0) begin = 0;
     }
@@ -51,7 +56,7 @@ function slice(arr, begin = 0, end = arr.length) {
     }
 
     for (var i = begin; i < end; i++) {
-       newArr.push(arr[i]);
+        push(newArr, arr[i]);
     }
 
     return newArr;
@@ -59,22 +64,22 @@ function slice(arr, begin = 0, end = arr.length) {
 
 // reduce
 /*
-Метод «arr.reduce(callback[, initialValue])» используется для последовательной обработки
-каждого элемента массива с сохранением промежуточного результата.
+ Метод «arr.reduce(callback[, initialValue])» используется для последовательной обработки
+ каждого элемента массива с сохранением промежуточного результата.
 
-Он применяет функцию callback по очереди к каждому элементу массива слева направо,
-сохраняя при этом промежуточный результат.
+ Он применяет функцию callback по очереди к каждому элементу массива слева направо,
+ сохраняя при этом промежуточный результат.
 
-Аргументы функции callback(previousValue, currentItem, index, arr):
-previousValue – последний результат вызова функции, он же «промежуточный результат».
-currentItem – текущий элемент массива, элементы перебираются по очереди слева-направо.
-index – номер текущего элемента.
-arr – обрабатываемый массив.
+ Аргументы функции callback(previousValue, currentItem, index, arr):
+ previousValue – последний результат вызова функции, он же «промежуточный результат».
+ currentItem – текущий элемент массива, элементы перебираются по очереди слева-направо.
+ index – номер текущего элемента.
+ arr – обрабатываемый массив.
 
-Кроме callback, методу можно передать «начальное значение» – аргумент initialValue.
-Если он есть, то на первом вызове значение previousValue будет равно initialValue,
-а если у reduce нет второго аргумента, то оно равно первому элементу массива,
-а перебор начинается со второго.*/
+ Кроме callback, методу можно передать «начальное значение» – аргумент initialValue.
+ Если он есть, то на первом вызове значение previousValue будет равно initialValue,
+ а если у reduce нет второго аргумента, то оно равно первому элементу массива,
+ а перебор начинается со второго.*/
 
 function reduce(arr, callback, initialValue) {
     if (arguments[2] !== undefined) {
@@ -97,4 +102,3 @@ function reduce(arr, callback, initialValue) {
 function splice() {
 
 }
-

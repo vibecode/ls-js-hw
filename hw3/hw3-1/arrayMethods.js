@@ -1,6 +1,8 @@
 //для начала делаю простенький push, поскольку он понадобится несколько раз
-function push(arr, element) {
-    arr[arr.length] = element;
+function push(arr) {
+    for (var i = 0; i < arguments.length - 1; i++) {
+        arr[arr.length] = arguments[i + 1];
+    }
 }
 
 // forEach

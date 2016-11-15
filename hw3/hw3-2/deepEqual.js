@@ -1,54 +1,51 @@
-/*
-Задача: написать функцию deepEqual, которая принимает в качестве параметров два аргумента - два объекта.
-Если обе переменные указывают на один и тот же объект, значит оба объекта идентичны.
-Если оба объекта имеют одинаковые свойства и их значения, значит оба объекта идентичны.
-Посмотрите на примеры того, как должна работать функция deepEqual:
-
-var objA = {
-        prop1: 'value1',
-        prop2: 'value2',
-        prop3: 'value3',
-        prop4: {
-            subProp1: 'sub value1',
-            subProp2: {
-                subSubProp1: 'sub sub value1',
-                subSubProp2: [1, 2, {prop2: 1, prop: 2}, 4, 5]
-            }
-        },
-        prop5: 1000,
-        prop6: new Date(2016, 2, 10)
-    };
-
-var objB = {
-    prop5: 1000,
-    prop3: 'value3',
-    prop1: 'value1',
-    prop2: 'value2',
-    prop6: new Date('2016/03/10'),
-    prop4: {
-        subProp2: {
-            subSubProp1: 'sub sub value1',
-            subSubProp2: [1, 2, {prop2: 1, prop: 2}, 4, 5]
-        },
-        subProp1: 'sub value1'
-    }
-};
-
-console.log(deepEqual(objA, objB)); //объекты идентичны, вернет true
-
-Не смотря на то, что свойства в objB перемешаны(последовательность свойства в objB отличается от последовательности свойств
-в objA), функция всё равно вернет true, так как количество свойств, из имена и значения совпадают у обоих объектов.
-
-Так же обратите внимание, что deepEqual должна работать рекурсивно.
-Это значит, что если значением какого-то свойства объекта является массив или объект, то начать сверять и их у обоих объектов.
-Если одним из элементов сверяемого массива, является другой массив или объект, то их тоже надо сверить рекурсивно.
-
-При сверке объектов - последовательность свойств не важна, но при сверке массивов, важна последовательность элементов, то есть массивы: `[1,2,3,4]` и `[2,1,3,4]` не равны, так как, хотя и имеют одинаковые значения, отличаются в последовательности этих значений.
-
-Так же обратите внимание, что даты тоже должны сравниваться корректно, не смотря на отличия в способах создания.*/
-
 function deepEqual(obj1, obj2) {
 
+    //для начала оба объекта должны быть объектами
+    if (!( obj1 instanceof Object ) || !( obj2 instanceof Object )) {
+        return false;
+    }
+
+    //проверка ссылаются ли переменные на один и тот же объект
+    if (obj1 === obj2 ) {
+        return true;
+    }
+
+    //если длина массива перечисляемых свойств разная - объекты заведомо разные
+    if (Object.keys(obj1).length !== Object.keys(obj2).length) {
+        return false;
+    }
+
+    //проверка дат
+    if ((obj1 instanceof Date && obj2 instanceof Date)) {
+         return obj1.toString() === obj2.toString();
+    }
+
+    //пройдемся по свойствам
+    for (var prop in obj1) {
+        if (obj1.hasOwnProperty(prop) !== obj2.hasOwnProperty(prop)) {
+            return false;
+        } else if (typeof obj1[prop] !== typeof obj2[prop]) {
+            return false;
+        }
+
+        if (obj1[prop] !== obj2[prop]) {
+            return false;
+        }
+
+        if (typeof (obj1[prop]) === 'object') {
+            deepEqual(obj1[prop], obj2[prop]);
+        }
+    }
+
+    for (var prop in obj2) {
+        if (obj1.hasOwnProperty(prop) !== obj2.hasOwnProperty(prop)) {
+            return false;
+        } else if (typeof obj1[prop] !== typeof obj2[prop]) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 module.exports = deepEqual;

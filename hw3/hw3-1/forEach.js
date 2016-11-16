@@ -1,6 +1,6 @@
 function forEach(arr, callback) {
-    if (arguments.length > 1) {
-        var thisArg = arguments[1];
+    if (arguments.length > 2) {
+        var thisArg = arguments[2];
     }
         for (var i = 0; i < arr.length; i++) {
             if (typeof thisArg == 'undefined') {

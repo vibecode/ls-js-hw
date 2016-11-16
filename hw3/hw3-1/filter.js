@@ -1,8 +1,8 @@
 const push = require ("./push");
 
 function filter(arr, callback) {
-    if (arguments.length > 1) {
-        var thisArg = arguments[1];
+    if (arguments.length > 2) {
+        var thisArg = arguments[2];
     }
 
     var newArr = [];

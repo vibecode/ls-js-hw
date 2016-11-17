@@ -6,7 +6,7 @@
 `prepend(container, newElement)` - newElement должен быть добавлен в начало элемента container.*/
 
 const prepend = function (container, newElement) {
-	container.insertBefore(newElement, container.children[0]);
+	return container.insertBefore(newElement, container.children[0]);
 }
 
 module.exports = prepend;

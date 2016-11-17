@@ -6,14 +6,11 @@
 
 const deleteTextNodes = function (el) {
     let childNodes = el.childNodes;
-    let i = 0;
+    let i = childNodes.length;
 
-    while (i < childNodes.length) {
-
+    while (i--) {
         if (childNodes[i].nodeType === 3) {
             el.removeChild(childNodes[i]);
-        } else {
-            i++;
         }
     }
 

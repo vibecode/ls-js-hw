@@ -7,7 +7,7 @@
 const deleteTextNodes = function(el) {
   let childNodes = el.childNodes;
 
-  for (node of childNodes) {
+  for (let node of childNodes) {
     if (node.nodeType === 3) {
       el.removeChild(node);
     }

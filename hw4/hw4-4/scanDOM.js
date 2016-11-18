@@ -34,7 +34,6 @@ const scanDom = function (document) {
 
                 if (!stat.elements.hasOwnProperty(node.nodeName)) {
                     stat.elements[node.nodeName] = 1;
-
                 } else {
                     stat.elements[node.nodeName] += 1;
                 }
@@ -65,8 +64,6 @@ const scanDom = function (document) {
         }
     }
 
-    collectStat(document);
-
     function logStat(statObj) {
         let elements = statObj.elements,
             text = statObj.textNodes,
@@ -89,6 +86,7 @@ const scanDom = function (document) {
         }
     }
 
+    collectStat(document);
     logStat(stat);
 };
 

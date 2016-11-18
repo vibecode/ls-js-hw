@@ -7,44 +7,44 @@ accordion.addEventListener('click', function (e) {
         let toggle = e.target,
             allToggles = accordion.querySelectorAll('.accordion__toggle'),
             thisSection = toggle.closest('.accordion__section'),
-            allSections = accordion.querySelectorAll('.accordion__section'),
+            thisListBox = thisSection.querySelector('.accordion__items-box'),
+            allListBoxes = accordion.querySelectorAll('.accordion__items-box'),
             thisList = thisSection.querySelector('.accordion__items-list'),
             allLists = accordion.querySelectorAll('.accordion__items-list');
 
-        function clearActive() {
-            allSections.forEach((section) => {
-                section.classList.remove('active');
-            });
-
-            allToggles.forEach((toggle) => {
-                toggle.classList.remove('accordion__toggle--active');
-            });
-        }
-
-        if (!thisSection.classList.contains('active')) {
-            //clear all active flags and styles
+        if (!toggle.classList.contains('accordion__toggle--active')) {
+            //clear all active styles
             clearActive();
 
-            //add active flag to the current section
-            thisSection.classList.add('active');
-
             //close all lists
+            allListBoxes.forEach((box) => {
+                box.classList.remove('accordion__items-box--open');
+            });
+
             allLists.forEach((list) => {
-                list.style.display = 'none';
+                list.classList.remove('accordion__items-list--open');
             });
 
             //open the current list
-            thisList.style.display = 'block';
+            thisListBox.classList.add('accordion__items-box--open');
+            thisList.classList.add('accordion__items-list--open');
 
             //set toggle active styles
             toggle.classList.add('accordion__toggle--active');
 
         } else {
             //close the current list
-            thisList.style.display = 'none';
+            thisListBox.classList.remove('accordion__items-box--open');
+            thisList.classList.remove('accordion__items-list--open');
 
             //clear all active flags and styles
             clearActive();
+        }
+
+        function clearActive() {
+            allToggles.forEach((toggle) => {
+                toggle.classList.remove('accordion__toggle--active');
+            });
         }
     }
 });

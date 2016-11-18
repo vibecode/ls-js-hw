@@ -92,4 +92,4 @@ const scanDom = function (document) {
 
 scanDom(document);
 
-// module.exports = scanDom;
+module.exports = scanDom;

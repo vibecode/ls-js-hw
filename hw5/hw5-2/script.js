@@ -1,5 +1,3 @@
-// fig.style.backgroundColor = getRandomColor(100, 75);
-
 const button = document.getElementById('button');
 const body = document.body;
 

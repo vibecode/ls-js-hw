@@ -7,6 +7,7 @@ body {
 div {
     position: absolute;
     cursor: move;
+    opacity: .9;
 }
 
 .button {

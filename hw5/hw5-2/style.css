@@ -27,7 +27,7 @@ div {
 }
 
 .button:hover {
-background-color: #ff4478;
+    background-color: #ff4478;
     cursor: pointer;
 }
 

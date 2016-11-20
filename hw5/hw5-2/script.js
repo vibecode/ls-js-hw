@@ -25,12 +25,11 @@ document.onmouseup = endMove;
 
 function makeBox() {
     let newBox = document.createElement('DIV'),
-        height = Math.floor((Math.random() + 0.1) * 100) + 'px',
-        width = Math.floor((Math.random() + 0.1) * 100) + 'px',
+        height = (Math.random() + 0.1) * 100 + 'px',
+        width = (Math.random() + 0.1) * 100 + 'px',
         color = getRandomColor(100, 75),
-        top = Math.floor(Math.random() * (window.innerHeight - parseInt(height))) + 'px',
-        left = Math.floor(Math.random() * (window.innerWidth - parseInt(width))) + 'px';
-    console.log(parseInt(height));
+        top = Math.random() * (window.innerHeight - parseInt(height)) + "px",
+        left = Math.random() * (window.innerWidth - parseInt(width)) + "px";
 
     newBox.style.height = height;
     newBox.style.width = width;

@@ -7,7 +7,7 @@
 const citiesUrl = 'https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json';
 const citiesList = document.querySelector('.cities');
 const input = document.getElementById('cityInput');
-let cities;
+let cities = [];
 
 function sendRequest(url) {
     return new Promise((resolve, reject) => {
@@ -37,18 +37,20 @@ window.addEventListener('load', (e) => {
                     return -1;
                 }
                 if (cityA > cityB) {
-                    return 1;
+                    return  1;
                 }
 
                 return 0;
             });
+
         }, (error) => {
-            citiesList.innerHTML = `<li>${error}</li>`;
+            citiesList.innerHTML = `<li class="error">${error}</li>`;
         });
 });
 
 input.addEventListener('input', (e) => {
     let inputValue = e.target.value.toLowerCase();
+    console.log(inputValue);
 
     citiesList.innerHTML = '';
     for (let cityObj of cities) {
@@ -58,4 +60,11 @@ input.addEventListener('input', (e) => {
             citiesList.innerHTML += `<li>${cityObj.name}</li>`;
         }
     }
+});
+
+citiesList.addEventListener('click', (e) => {
+   if (e.target.nodeName === "LI") {
+       input.value = e.target.textContent;
+       citiesList.innerHTML = '';
+   }
 });

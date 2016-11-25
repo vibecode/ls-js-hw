@@ -56,7 +56,7 @@ input.addEventListener('input', (e) => {
     for (let cityObj of cities) {
         let city = cityObj.name.toLowerCase();
 
-        if (city.startsWith(inputValue)) {
+        if (city.startsWith(inputValue) && inputValue) {
             citiesList.innerHTML += `<li>${cityObj.name}</li>`;
         }
     }

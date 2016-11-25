@@ -81,12 +81,17 @@ body {
     border-right: 1px solid #f0f0f0;
     width: 100%;
     cursor: pointer;
-    transition: background-color .3s;
+    transition: background-color .2s;
 }
 
 .cities li:hover {
     background-color: #f8f8f8;
 }
+
+.active {
+    background-color: #f8f8f8;
+}
+
 .error {
     color: #ff7867;
 }

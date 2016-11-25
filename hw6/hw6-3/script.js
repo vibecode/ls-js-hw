@@ -37,7 +37,7 @@ window.addEventListener('load', (e) => {
                     return -1;
                 }
                 if (cityA > cityB) {
-                    return  1;
+                    return 1;
                 }
 
                 return 0;
@@ -50,21 +50,50 @@ window.addEventListener('load', (e) => {
 
 input.addEventListener('input', (e) => {
     let inputValue = e.target.value.toLowerCase();
-    console.log(inputValue);
 
     citiesList.innerHTML = '';
     for (let cityObj of cities) {
         let city = cityObj.name.toLowerCase();
 
         if (city.startsWith(inputValue) && inputValue) {
-            citiesList.innerHTML += `<li>${cityObj.name}</li>`;
+            citiesList.innerHTML += `<li tabindex="0">${cityObj.name}</li>`;
         }
+    }
+    if (citiesList.firstChild) {
+        citiesList.firstChild.classList.add('active');
+    }
+});
+
+input.addEventListener('keydown', (e) => {
+    let activeCity = citiesList.querySelector('.active');
+
+        if (e.keyCode === 40) {
+            if (activeCity.nextElementSibling) {
+                activeCity.classList.remove('active');
+                activeCity.nextElementSibling.classList.add('active');
+            }
+        }
+
+        if (e.keyCode === 38) {
+            if (activeCity.previousElementSibling) {
+                activeCity.classList.remove('active');
+                activeCity.previousElementSibling.classList.add('active');
+            }
+        }
+});
+
+input.addEventListener('keydown', (e) => {
+    let activeCity = citiesList.querySelector('.active');
+
+    if (e.keyCode === 13) {
+        input.value = activeCity.innerText;
+        citiesList.innerHTML = '';
     }
 });
 
 citiesList.addEventListener('click', (e) => {
-   if (e.target.nodeName === "LI") {
-       input.value = e.target.textContent;
-       citiesList.innerHTML = '';
-   }
+    if (e.target.nodeName === "LI") {
+        input.value = e.target.textContent;
+        citiesList.innerHTML = '';
+    }
 });

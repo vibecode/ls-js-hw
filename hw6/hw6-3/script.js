@@ -49,16 +49,22 @@ window.addEventListener('load', (e) => {
 });
 
 input.addEventListener('input', (e) => {
+
     let inputValue = e.target.value.toLowerCase();
+    let listMarkup = '';
 
     citiesList.innerHTML = '';
+
     for (let cityObj of cities) {
         let city = cityObj.name.toLowerCase();
 
-        if (city.startsWith(inputValue) && inputValue) {
-            citiesList.innerHTML += `<li tabindex="0">${cityObj.name}</li>`;
+        if (~city.indexOf(inputValue) && inputValue) {
+            listMarkup += `<li tabindex="0">${cityObj.name}</li>`;
         }
     }
+
+    citiesList.innerHTML = listMarkup;
+
     if (citiesList.firstChild) {
         citiesList.firstChild.classList.add('active');
     }
@@ -67,23 +73,19 @@ input.addEventListener('input', (e) => {
 input.addEventListener('keydown', (e) => {
     let activeCity = citiesList.querySelector('.active');
 
-        if (e.keyCode === 40) {
-            if (activeCity.nextElementSibling) {
-                activeCity.classList.remove('active');
-                activeCity.nextElementSibling.classList.add('active');
-            }
+    if (e.keyCode === 40) {
+        if (activeCity.nextElementSibling) {
+            activeCity.classList.remove('active');
+            activeCity.nextElementSibling.classList.add('active');
         }
+    }
 
-        if (e.keyCode === 38) {
-            if (activeCity.previousElementSibling) {
-                activeCity.classList.remove('active');
-                activeCity.previousElementSibling.classList.add('active');
-            }
+    if (e.keyCode === 38) {
+        if (activeCity.previousElementSibling) {
+            activeCity.classList.remove('active');
+            activeCity.previousElementSibling.classList.add('active');
         }
-});
-
-input.addEventListener('keydown', (e) => {
-    let activeCity = citiesList.querySelector('.active');
+    }
 
     if (e.keyCode === 13) {
         input.value = activeCity.innerText;

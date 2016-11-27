@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.button {
+    display: block;
+    width: 200px;
+    padding: 15px;
+    background-color: #00b398;
+    color: white;
+    font-size: 18px;
+    margin: 100px auto 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #009279;
+}
+
+.city-input {
+    margin: 100px auto 0;
+    width: 100%;
+    padding: 16px;
+    font-size: 24px;
+    box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.13);
+    outline: none;
+    border: 1px solid #f0f0f0;
+    color: #5c5c5c;
+    font-family: "Helvetica Neue", sans-serif;
+    font-weight: 300;
+}
+
+.city-input::-webkit-input-placeholder {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-style: italic;
+    font-weight: 100;
+    color: #c5c5c5;
+}
+
+.city-input::-moz-placeholder {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-style: italic;
+    font-weight: 100;
+    color: #c5c5c5;
+}
+
+.container {
+    margin: 0 auto;
+    width: 350px;
+}
+
+.cities {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    list-style: none;
+    display: block;
+    box-shadow: 0px 4px 9px 0px rgba(0,0,0,0.13);
+    position: relative;
+    background-color: white;
+}
+
+.cities li  {
+    padding: 16px;
+    font-size: 24px;
+    font-family: "Helvetica Neue", sans-serif;
+    font-weight: 300;
+    color: #5c5c5c;
+    border-bottom:1px solid #f0f0f0;
+    border-left: 1px solid #f0f0f0;
+    border-right: 1px solid #f0f0f0;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color .2s;
+}
+
+.cities li:hover {
+    background-color: #f8f8f8;
+}
+
+.active {
+    background-color: #f8f8f8;
+}
+
+.error {
+    color: #ff7867;
+}

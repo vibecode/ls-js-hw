@@ -16,7 +16,7 @@ function listCookies() {
     const table = document.getElementById('table');
     let cookies = storeCookies();
     let tContent = '';
-    let tHead = `<thead></thead><tr><th>Name</th><th>Value</th><th></th></tr></thead>`;
+    let tHead = `<thead><tr><th>Name</th><th>Value</th><th></th></tr></thead>`;
 
     if (cookies) {
         cookies.forEach((cookie) => {

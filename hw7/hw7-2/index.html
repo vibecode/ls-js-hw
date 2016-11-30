@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Вывод куки</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Add new cookie</h1>
+
+    <form id="add-form" class="add-form">
+        <input type="text" id="cookie-name" name="cookieName" class="input" placeholder="Name">
+        <input type="text" id="cookie-value" name="cookieValue" class="input" placeholder="Value">
+        <input type="text" id="cookie-expires" name="cookieExpires" class="input" placeholder="Expires in days">
+        <input type="submit" name="cookieSubmit" value="Add" class="add-button">
+    </form>
+    <h1>Cookies list</h1>
+    <table class="table" id="table"></table>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

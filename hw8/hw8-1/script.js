@@ -8,55 +8,44 @@ new Promise((resolve) => {
         window.onload = resolve;
     }
 }).then(() => {
-    return new Promise((resolve, reject) => {
-        const url = 'https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json';
+    const url = 'https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json';
 
-        let xhr = new XMLHttpRequest();
+    fetch(url).then(function (cities) {
+        return cities.json();
 
-        xhr.open('GET', url);
-        xhr.responseType = 'json';
-        xhr.addEventListener('load', (e) => {
-            resolve(xhr.response);
+    }).then((cities) => {
+        cities.sort((a, b) => {
+            let cityA = a.name.toUpperCase();
+            let cityB = b.name.toUpperCase();
+
+            if (cityA < cityB) {
+                return -1;
+            }
+            if (cityA > cityB) {
+                return 1;
+            }
+
+            return 0;
         });
-        xhr.addEventListener('error', (e) => {
-            reject("Упс, что-то пошло не так!");
+
+        let result = document.getElementById('result'),
+            input = document.getElementById('cityInput'),
+            sourceTemplate = document.getElementById('citiesTemplate').innerHTML,
+            compileTemplate = Handlebars.compile(sourceTemplate);
+
+        result.innerHTML = compileTemplate({cities: cities});
+
+        input.addEventListener('input', (e) => {
+            let inputValue = e.target.value.toLowerCase();
+
+            let citiesFiltered = cities.filter((city) => {
+                return inputValue && ~city.name.toLowerCase().indexOf(inputValue);
+            });
+
+            result.innerHTML = compileTemplate({cities: citiesFiltered});
         });
-        xhr.send();
-    })
-}).then((response) => {
-    let cities = response;
 
-    cities.sort((a, b) => {
-        let cityA = a.name.toUpperCase();
-        let cityB = b.name.toUpperCase();
-
-        if (cityA < cityB) {
-            return -1;
-        }
-        if (cityA > cityB) {
-            return 1;
-        }
-
-        return 0;
+    }).catch((error) => {
+        console.log(error);
     });
-
-    let result = document.getElementById('result'),
-        input = document.getElementById('cityInput'),
-        sourceTemplate = document.getElementById('citiesTemplate').innerHTML,
-        compileTemplate = Handlebars.compile(sourceTemplate);
-
-    result.innerHTML = compileTemplate({cities: cities});
-
-    input.addEventListener('input', (e) => {
-        let inputValue = e.target.value.toLowerCase();
-
-        let citiesFiltered = cities.filter((city) => {
-            return inputValue && ~city.name.toLowerCase().indexOf(inputValue);
-        });
-
-        result.innerHTML = compileTemplate({cities: citiesFiltered});
-    });
-
-}, (error) => {
-    console.log(error);
 });

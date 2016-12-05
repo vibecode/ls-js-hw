@@ -51,7 +51,7 @@ new Promise((resolve) => {
         let inputValue = e.target.value.toLowerCase();
 
         let citiesFiltered = cities.filter((city) => {
-            return ~city.name.toLowerCase().indexOf(inputValue) && inputValue;
+            return inputValue && ~city.name.toLowerCase().indexOf(inputValue);
         });
 
         result.innerHTML = compileTemplate({cities: citiesFiltered});

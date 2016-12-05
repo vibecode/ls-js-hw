@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <input type="text" class="city-input" id="cityInput" name="cityInput" placeholder="Название города">
+    <div id="result"></div>
+    <script type="text/x-handlebars-template" id="citiesTemplate">
+        <ul class="cities">
+        {{#each cities}}
+          <li>{{name}}</li>
+        {{/each}}
+    </ul>
+    </script>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

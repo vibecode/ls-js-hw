@@ -63,7 +63,7 @@ gulp.task('imagemin', ['copy'], function () {
       imagemin.optipng({optimizationLevel: 3}),
       imagemin.jpegtran({progressive: true})
     ]))
-    .pipe(gulp.dest('build/img'));
+    .pipe(gulp.dest('build'));
 });
 
 gulp.task('copy-html', function () {
@@ -76,7 +76,7 @@ gulp.task('copy', ['copy-html', 'scripts', 'style'], function () {
   return gulp.src([
     'src/fonts/**/*.{woff,woff2}',
     'src/img/*.*'
-  ], {base: '.'})
+  ], {base: './src'})
     .pipe(gulp.dest('build'));
 });
 

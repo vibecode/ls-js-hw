@@ -8,25 +8,12 @@ export default () => {
 
     listContainer.addEventListener('dragstart', (e) => {
         item = e.target.closest('.list__item');
-        // item.style.opacity = '.4';
-
         e.dataTransfer.effectAllowed = 'move';
-        e.dataTransfer.setData('text/html', item);
-    });
-
-    listContainer.addEventListener('dragenter', (e) => {
-        if (e.target.closest('.list')){
-            // e.target.classList.add('drag_over');
-        }
     });
 
     listContainer.addEventListener('dragover', (e) => {
         e.preventDefault();
         e.dataTransfer.dropEffect = 'move';
-    });
-
-    listContainer.addEventListener('dragleave', (e) => {
-        // e.target.classList.remove('dragover');
     });
 
     listContainer.addEventListener('drop', (e) => {
@@ -41,8 +28,4 @@ export default () => {
             removeData(dataFiltered, item.dataset.id)
         }
     });
-
-    // listContainer.addEventListener('dragend', (e) => {
-    //
-    // });
 }

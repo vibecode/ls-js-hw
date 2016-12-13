@@ -12,6 +12,8 @@ export default (data, source, target) => {
             });
 
             renderList(output, target);
+        } else {
+            renderList(data, target);
         }
     });
 }

@@ -1,6 +1,11 @@
 import renderList from './modules/renderList';
-import data from './modules/data';
 import search from './modules/search';
+import dataAll from './data/dataAll';
+import dataFiltered from './data/dataFiltered';
+import dragNdrop from './modules/dragNdrop';
+import moveByButton from './modules/moveByButton';
+import saveToLocalStorage from './modules/saveToLocalStorage';
+import getFromLocalStorage from './modules/getFromLocalStorage';
 
 new Promise(function(resolve) {
     if (document.readyState === 'complete') {
@@ -39,11 +44,14 @@ new Promise(function(resolve) {
             if (answer.error) {
                 reject(new Error(answer.error.error_msg));
             } else {
-                Object.assign(data, answer.response.items);
-                console.log(data);
-
-                renderList(data, 'leftList');
-                search(data, 'inputMain', 'leftList');
+                getFromLocalStorage(answer);
+                renderList(dataAll, 'leftList');
+                renderList(dataFiltered, 'rightList');
+                search(dataAll, 'inputMain', 'leftList');
+                search(dataFiltered, 'inputFiltered', 'rightList');
+                dragNdrop();
+                moveByButton();
+                saveToLocalStorage();
 
                 resolve();
             }

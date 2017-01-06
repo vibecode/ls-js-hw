@@ -1,71 +1,71 @@
 var Calc = (function () {
-    var Calc = function (firstNumber) {
-        this.firstNumber = firstNumber;
-    };
+  var Calc = function (firstNumber) {
+    this.firstNumber = firstNumber;
+  };
 
-    Calc.prototype.sum = function () {
-        var args = Array.prototype.slice.call(arguments);
+  Calc.prototype.sum = function () {
+    var args = Array.prototype.slice.call(arguments);
 
-        return args.reduce(function (prev, next) {
-            return prev + next;
-        }, this.firstNumber);
-    };
+    return args.reduce(function (prev, next) {
+      return prev + next;
+    }, this.firstNumber);
+  };
 
-    Calc.prototype.dif = function () {
-        var args = Array.prototype.slice.call(arguments);
+  Calc.prototype.dif = function () {
+    var args = Array.prototype.slice.call(arguments);
 
-        return args.reduce(function (prev, next) {
-            return prev - next;
-        }, this.firstNumber);
-    };
+    return args.reduce(function (prev, next) {
+      return prev - next;
+    }, this.firstNumber);
+  };
 
-    Calc.prototype.div = function () {
-        var args = Array.prototype.slice.call(arguments);
+  Calc.prototype.div = function () {
+    var args = Array.prototype.slice.call(arguments);
 
-        return args.reduce(function (prev, next) {
-            if (next === 0) {
-                throw new Error('Вы пытаетесь поделить на ноль, не надо так!');
-            }
+    return args.reduce(function (prev, next) {
+      if (next === 0) {
+        throw new Error('Вы пытаетесь поделить на ноль, не надо так!');
+      }
 
-            return prev / next;
-        }, this.firstNumber);
-    };
+      return prev / next;
+    }, this.firstNumber);
+  };
 
-    Calc.prototype.mul = function () {
-        var args = Array.prototype.slice.call(arguments);
+  Calc.prototype.mul = function () {
+    var args = Array.prototype.slice.call(arguments);
 
-        return args.reduce(function (prev, next) {
-            return prev * next;
-        }, this.firstNumber);
-    };
+    return args.reduce(function (prev, next) {
+      return prev * next;
+    }, this.firstNumber);
+  };
 
-    return Calc;
+  return Calc;
 })();
 
 var SqCalc = (function () {
-    var SqCalc = function () {
-        Calc.apply(this, arguments);
-    };
+  var SqCalc = function () {
+    Calc.apply(this, arguments);
+  };
 
-    SqCalc.prototype = Object.create(Calc.prototype);
+  SqCalc.prototype = Object.create(Calc.prototype);
 
-    SqCalc.prototype.sum = function () {
-        return Math.pow(Calc.prototype.sum.apply(this, arguments), 2);
-    };
+  SqCalc.prototype.sum = function () {
+    return Math.pow(Calc.prototype.sum.apply(this, arguments), 2);
+  };
 
-    SqCalc.prototype.dif = function () {
-        return Math.pow(Calc.prototype.dif.apply(this, arguments), 2);
-    };
+  SqCalc.prototype.dif = function () {
+    return Math.pow(Calc.prototype.dif.apply(this, arguments), 2);
+  };
 
-    SqCalc.prototype.div = function () {
-        return Math.pow(Calc.prototype.div.apply(this, arguments), 2);
-    };
+  SqCalc.prototype.div = function () {
+    return Math.pow(Calc.prototype.div.apply(this, arguments), 2);
+  };
 
-    SqCalc.prototype.mul = function () {
-        return Math.pow(Calc.prototype.mul.apply(this, arguments), 2);
-    };
+  SqCalc.prototype.mul = function () {
+    return Math.pow(Calc.prototype.mul.apply(this, arguments), 2);
+  };
 
-    return SqCalc;
+  return SqCalc;
 })();
 
 let myCalc = new SqCalc(100);
